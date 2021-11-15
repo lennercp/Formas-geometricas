@@ -133,7 +133,7 @@ def ValoresEntry():
             break
     else:
         return valores
-        
+
 def Calcular():
     global forma
     global atributo
@@ -158,24 +158,36 @@ planaButton = Radiobutton(frameTipoFormas, text='Formas planas', variable=tipoFo
 tresDButton = Radiobutton(frameTipoFormas, text='Formas 3D', variable=tipoForma, value=2, command=TipoFormas).pack(side=RIGHT)
 
 #formas planas
-quadradoFoto = ImageTk.PhotoImage(Image.open("img/quadrado.png").resize((100,100)))
-quadrado = Radiobutton(frameFormas, text='quadrado', image=quadradoFoto, variable=formas, value=1, command=Formas) 
+frameQuadrado = Frame(frameFormas)
+Label(frameQuadrado, text="Quadrado").pack()
+quadradoFoto = ImageTk.PhotoImage(Image.open("img/quadrado.png").resize((70,70)))
+quadrado = Radiobutton(frameQuadrado, text='quadrado', image=quadradoFoto, variable=formas, value=1, command=Formas).pack()
 
+frameRetangulo = Frame(frameFormas)
+Label(frameRetangulo, text="Retangulo").pack()
 retanguloFoto = ImageTk.PhotoImage(Image.open("img/retangulo.png").resize((100,70)))
-retangulo = Radiobutton(frameFormas, text='retangulo', image=retanguloFoto, variable= formas, value=2, command=Formas) 
+retangulo = Radiobutton(frameRetangulo, text='retangulo', image=retanguloFoto, variable= formas, value=2, command=Formas).pack()
 
+frameCirculo = Frame(frameFormas)
+Label(frameCirculo, text="Circulo").pack()
 circuloFoto = ImageTk.PhotoImage(Image.open("img/circulo.png").resize((70,70)))
-circulo = Radiobutton(frameFormas, image=circuloFoto, variable=formas, value=3, command=Formas) 
+circulo = Radiobutton(frameCirculo, image=circuloFoto, variable=formas, value=3, command=Formas).pack() 
 
 #formas 3D
+frameCubo = Frame(frameFormas)
+Label(frameCubo, text="Cubo").pack()
 cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo.png").resize((70,70)))
-cubo = Radiobutton(frameFormas, image=cuboFoto, variable=formas, value=4, command=Formas) 
+cubo = Radiobutton(frameCubo, image=cuboFoto, variable=formas, value=4, command=Formas).pack() 
 
+frameEsfera = Frame(frameFormas)
+Label(frameEsfera, text="Esfera").pack()
 esferaFoto = ImageTk.PhotoImage(Image.open("img/esfera.png").resize((70,70)))
-esfera = Radiobutton(frameFormas, image=esferaFoto, variable=formas, value=5, command=Formas) 
+esfera = Radiobutton(frameEsfera, image=esferaFoto, variable=formas, value=5, command=Formas).pack() 
 
+frameParalelepipedo = Frame(frameFormas)
+Label(frameParalelepipedo, text="Paralelepipedo").pack()
 paralelepipedoFoto = ImageTk.PhotoImage(Image.open("img/paralelepipedo.png").resize((100,70)))
-paralelepipedo = Radiobutton(frameFormas, image=paralelepipedoFoto, variable=formas, value=6, command=Formas) 
+paralelepipedo = Radiobutton(frameParalelepipedo, image=paralelepipedoFoto, variable=formas, value=6, command=Formas).pack()
 
 #atributos planos
 perimetroButton = Radiobutton(frameAtributos, text="Perimetro", variable=atributos, value=1, command= createEntry)
@@ -188,8 +200,8 @@ diagonalButton = Radiobutton(frameAtributos, text="Diagonal", variable=atributos
 
 #dicionarios
 formasGeometricas = {
-    'plano': [quadrado, retangulo, circulo],
-    'tresD': [cubo, paralelepipedo, esfera]
+    'plano': [frameQuadrado, frameRetangulo, frameCirculo],
+    'tresD': [frameCubo, frameParalelepipedo, frameEsfera]
 }
 
 atributosFormas = {
