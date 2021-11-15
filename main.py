@@ -14,11 +14,11 @@ frameFormas = Frame(tela)
 
 frameAtributos = Frame(tela)
 
-frameAlerta = Frame(tela)
-
 frameEntrys = Frame(tela)
 
 frameResultado = Frame(tela)
+
+frameAlerta = Frame(tela)
 
 tipoForma = IntVar()
 formas = IntVar()
@@ -62,7 +62,6 @@ def ApagarFrames(frame):
     frames = tela.pack_slaves()
 
     if frame in frames:
-        # print("<class 'tkinter.Frame'>" == str(type(frame)))
         for f in range(frames.index(frame), len(frames)):
             for widget in frames[f].pack_slaves():
                 if "<class 'tkinter.Frame'>" == str(type(widget)):
@@ -125,30 +124,33 @@ def ValoresEntry():
 
         try:
             valores.append(int(frame.children['!entry'].get()))
-            alerta.pack_forget()
-            frameAlerta.pack_forget()
             
-            return valores
-
         except ValueError:
-            print('erro')
-            frameAlerta.pack()
-            alerta.pack()
-
+            if not frame.children['!entry'].get():
+                mostrarAlerta('Preencha todos os campos!!')
+            else:
+                mostrarAlerta('Apenas números!!')
+            break
+    else:
+        return valores
+        
 def Calcular():
     global forma
     global atributo
-
-    try:
-        valores = ValoresEntry()
+    
+    valores = ValoresEntry()
+    if valores is not None:
         resultado = eval(f'{forma.title()}().{atributo}(*valores)')
         MostrarResultado(atributo, resultado)
-    except:
-        pass
+
 
 def MostrarResultado(atributo, resultado):
     frameResultado.pack()
     Label(frameResultado, text=f'{atributo}: {resultado:.2f}').pack()
+
+def mostrarAlerta(mensagem):
+    frameResultado.pack()
+    Label(frameResultado, text=mensagem, fg='red').pack()
 
 
 planaButton = Radiobutton(frameTipoFormas, text='Formas planas', variable=tipoForma, value=1, command=TipoFormas).pack(side=LEFT)
@@ -184,8 +186,6 @@ diagonalButton = Radiobutton(frameAtributos, text="Diagonal", variable=atributos
 volumeButton = Radiobutton(frameAtributos, text="Volume", variable=atributos, value=4, command= createEntry)
 diagonalButton = Radiobutton(frameAtributos, text="Diagonal", variable=atributos, value=3, command= createEntry)
 
-#alerta
-alerta = Label(frameAlerta, text='Apenas números!!', fg='red')
 #dicionarios
 formasGeometricas = {
     'plano': [quadrado, retangulo, circulo],
