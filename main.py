@@ -1,7 +1,7 @@
 from plana import *
 from tridimensional import *
 from tkinter import *
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageOps
 
 tela = Tk()
 tela.geometry('500x300+500+200')
@@ -37,24 +37,17 @@ def TipoFormas():
 
 def Formas():
     global forma
-    if formas.get() == 1:
-        widgetsList = atributosFormas['quadrado']
-        forma = 'quadrado'
-    elif formas.get() == 2:
-        widgetsList = atributosFormas['retangulo']
-        forma = 'retangulo'
-    elif formas.get() == 3:
-        widgetsList = atributosFormas['circulo']
-        forma = 'circulo'
-    elif formas.get() == 4:
-        widgetsList = atributosFormas['cubo']
-        forma = 'cubo'
-    elif formas.get() == 5:
-        widgetsList = atributosFormas['esfera']
-        forma = 'esfera'
-    else:
-        widgetsList = atributosFormas['paralelepipedo']
-        forma = 'paralelepipedo'
+    widgestsdict = {1: 'quadrado',
+                    2: 'retangulo',
+                    3: 'circulo',
+                    4: 'cubo',
+                    5: 'esfera',
+                    6: 'paralelepipedo'
+                   }
+    
+    forma = widgestsdict[formas.get()]
+    
+    widgetsList = atributosFormas[forma]
         
     MostrarWidgets(widgetsList, frameAtributos)
 
@@ -64,6 +57,11 @@ def ApagarFrames(frame):
     if frame in frames:
         for f in range(frames.index(frame), len(frames)):
             for widget in frames[f].pack_slaves():
+                if len(widget.pack_slaves()) > 0:
+                    if str(type(widget.pack_slaves()[1])) == "<class 'tkinter.Radiobutton'>":
+                        widget.pack_forget()
+                        continue
+
                 if "<class 'tkinter.Frame'>" == str(type(widget)):
                     for widgetEntry in widget.pack_slaves():
                         widgetEntry.destroy()
@@ -89,18 +87,14 @@ def createEntry():
 
     ApagarFrames(frameEntrys)
 
-    if atributos.get() == 1:
-        numeroEntry = numerosEntry[forma]['perimetro']
-        atributo = 'perimetro'
-    elif atributos.get() == 2:
-        numeroEntry = numerosEntry[forma]['area']
-        atributo = 'area'
-    elif atributos.get() == 3:
-        numeroEntry = numerosEntry[forma]['diagonal']
-        atributo = 'diagonal'
-    else:
-        numeroEntry = numerosEntry[forma]['volume']
-        atributo = 'volume'
+    atributosdict = {1: 'perimetro',
+                     2: 'area',
+                     3: 'diagonal',
+                     4: 'volume',}
+    
+    atributo = atributosdict[atributos.get()]
+    
+    numeroEntry = numerosEntry[forma][atributo]
     
     for textLabel in numeroEntry:
         frameEntry = Frame(frameEntrys)
@@ -158,24 +152,47 @@ planaButton = Radiobutton(frameTipoFormas, text='Formas planas', variable=tipoFo
 tresDButton = Radiobutton(frameTipoFormas, text='Formas 3D', variable=tipoForma, value=2, command=TipoFormas).pack(side=RIGHT)
 
 #formas planas
-quadradoFoto = ImageTk.PhotoImage(Image.open("img/quadrado.png").resize((100,100)))
-quadrado = Radiobutton(frameFormas, text='quadrado', image=quadradoFoto, variable=formas, value=1, command=Formas) 
+frameQuadrado = Frame(frameFormas)
+quadradoLabel = Label(frameQuadrado, text="     Quadrado").pack()
+quadradoimage = Image.open("img/quadrado.png").resize((80,75))
+quadradocut = ImageOps.crop(quadradoimage, (0,2,0,0))
+quadradoFoto = ImageTk.PhotoImage(quadradocut)
+quadrado = Radiobutton(frameQuadrado, text='quadrado', image=quadradoFoto, variable=formas, value=1, command=Formas).pack()
 
-retanguloFoto = ImageTk.PhotoImage(Image.open("img/retangulo.png").resize((100,70)))
-retangulo = Radiobutton(frameFormas, text='retangulo', image=retanguloFoto, variable= formas, value=2, command=Formas) 
+frameRetangulo = Frame(frameFormas)
+retanguloLabel = Label(frameRetangulo, text="      Retangulo").pack(pady=(0,5))
+retanguloimage = Image.open("img/retangulo.png").resize((100,70))
+retangulocut = ImageOps.crop(retanguloimage, (0,3,0,0))
+retanguloFoto = ImageTk.PhotoImage(retangulocut)
+retangulo = Radiobutton(frameRetangulo, text='retangulo', image=retanguloFoto, variable= formas, value=2, command=Formas).pack()
 
-circuloFoto = ImageTk.PhotoImage(Image.open("img/circulo.png").resize((70,70)))
-circulo = Radiobutton(frameFormas, image=circuloFoto, variable=formas, value=3, command=Formas) 
+frameCirculo = Frame(frameFormas)
+circuloLabel = Label(frameCirculo, text="     Circulo").pack()
+circuloimage = Image.open("img/circulo.png").resize((70,70))
+circuloFoto = ImageTk.PhotoImage(circuloimage)
+circulo = Radiobutton(frameCirculo, image=circuloFoto, variable=formas, value=3, command=Formas).pack() 
 
 #formas 3D
+frameCubo = Frame(frameFormas)
+cuboLabel = Label(frameCubo, text="     Cubo").pack()
+cuboimage = Image.open("img/cubo.png").resize((70,70))
+cuboFoto = ImageTk.PhotoImage(cuboimage)
 cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo.png").resize((70,70)))
-cubo = Radiobutton(frameFormas, image=cuboFoto, variable=formas, value=4, command=Formas) 
+cubo = Radiobutton(frameCubo, image=cuboFoto, variable=formas, value=4, command=Formas).pack()
 
-esferaFoto = ImageTk.PhotoImage(Image.open("img/esfera.png").resize((70,70)))
-esfera = Radiobutton(frameFormas, image=esferaFoto, variable=formas, value=5, command=Formas) 
-
+frameParalelepipedo = Frame(frameFormas)
+paralelepipedoLabel = Label(frameParalelepipedo, text="      Paralelepipedo").pack()
+paralelepipedoimage = Image.open("img/paralelepipedo.png").resize((70,70))
+paralelepipedoFoto = ImageTk.PhotoImage(paralelepipedoimage)
 paralelepipedoFoto = ImageTk.PhotoImage(Image.open("img/paralelepipedo.png").resize((100,70)))
-paralelepipedo = Radiobutton(frameFormas, image=paralelepipedoFoto, variable=formas, value=6, command=Formas) 
+paralelepipedo = Radiobutton(frameParalelepipedo, image=paralelepipedoFoto, variable=formas, value=6, command=Formas).pack() 
+
+frameEsfera = Frame(frameFormas)
+esferaLabel = Label(frameEsfera, text="      Esfera").pack()
+esferaimage = Image.open("img/esfera.png").resize((70,70))
+esferaFoto = ImageTk.PhotoImage(esferaimage)
+esferaFoto = ImageTk.PhotoImage(Image.open("img/esfera.png").resize((70,70)))
+esfera = Radiobutton(frameEsfera, image=esferaFoto, variable=formas, value=5, command=Formas).pack() 
 
 #atributos planos
 perimetroButton = Radiobutton(frameAtributos, text="Perimetro", variable=atributos, value=1, command= createEntry)
@@ -188,8 +205,8 @@ diagonalButton = Radiobutton(frameAtributos, text="Diagonal", variable=atributos
 
 #dicionarios
 formasGeometricas = {
-    'plano': [quadrado, retangulo, circulo],
-    'tresD': [cubo, paralelepipedo, esfera]
+    'plano': [frameQuadrado, frameRetangulo, frameCirculo],
+    'tresD': [frameCubo, frameParalelepipedo, frameEsfera]
 }
 
 atributosFormas = {
