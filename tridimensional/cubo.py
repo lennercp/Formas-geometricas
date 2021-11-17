@@ -5,5 +5,5 @@ class Cubo(Forma3D):
     def volume(self, lado):
         return lado ** 3
     
-    def diagonal(self, area):
-        return area * sqrt(3)
+    def diagonal(self, lado):
+        return lado * sqrt(3)

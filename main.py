@@ -221,12 +221,12 @@ atributosFormas = {
 numerosEntry = {
     'quadrado': {
         'perimetro': ['lado'],
-        'diagonal': ['area'],
+        'diagonal': ['lado'],
         'area': ['lado']
     },
     'retangulo': {
         'area': ['lado1','lado2'],
-        'diagonal' : ['area','lado1','lado2'],
+        'diagonal' : ['lado1','lado2'],
         'perimetro' : ['lado1','lado2']
 
     },
@@ -239,7 +239,7 @@ numerosEntry = {
     },
     'cubo':{
         'volume': ['lado'], 
-        'diagonal': ['area']
+        'diagonal': ['lado']
     }, 
     'paralelepipedo':{
         'volume': ['lado1', 'lado2', 'lado3'], 
