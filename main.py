@@ -221,7 +221,7 @@ atributosFormas = {
 numerosEntry = {
     'quadrado': {
         'perimetro': ['lado'],
-        'diagonal': ['area'],
+        'diagonal': ['lado'],
         'area': ['lado']
     },
     'retangulo': {
