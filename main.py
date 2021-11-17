@@ -105,7 +105,7 @@ def createEntry():
         e.bind('<Return>', lambda e: Calcular())
         e.pack(side=RIGHT)
 
-    btnCalcular = Button(tela, text='Calcular', fg='red', command=Calcular).pack()
+    btnCalcular = Button(tela, text='Calcular', fg='black', command=Calcular).pack()
 
 def ValoresEntry():
     frames = frameEntrys.pack_slaves()
@@ -117,7 +117,7 @@ def ValoresEntry():
         frameResultado.pack_forget()
 
         try:
-            valores.append(int(frame.children['!entry'].get()))
+            valores.append(float(frame.children['!entry'].get()))
             
         except ValueError:
             if not frame.children['!entry'].get():
@@ -140,7 +140,7 @@ def Calcular():
 
 def MostrarResultado(atributo, resultado):
     frameResultado.pack()
-    Label(frameResultado, text=f'{atributo}: {resultado:.2f}').pack()
+    Label(frameResultado, text=f'{atributo}: {resultado:.2f}', fg='green').pack()
 
 def mostrarAlerta(mensagem):
     frameResultado.pack()
