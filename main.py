@@ -239,7 +239,7 @@ numerosEntry = {
     },
     'cubo':{
         'volume': ['lado'], 
-        'diagonal': ['area']
+        'diagonal': ['lado']
     }, 
     'paralelepipedo':{
         'volume': ['lado1', 'lado2', 'lado3'], 
