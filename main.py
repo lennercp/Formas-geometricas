@@ -220,7 +220,7 @@ numerosEntry = {
     },
     'retangulo': {
         'area': ['lado1','lado2'],
-        'diagonal' : ['area','lado1','lado2'],
+        'diagonal' : ['lado1','lado2'],
         'perimetro' : ['lado1','lado2']
 
     },
