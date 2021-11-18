@@ -177,7 +177,7 @@ frameCubo = Frame(frameFormas)
 cuboLabel = Label(frameCubo, text="     Cubo").pack()
 cuboimage = Image.open("img/cubo.png").resize((70,70))
 cuboFoto = ImageTk.PhotoImage(cuboimage)
-cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo.png").resize((70,70)))
+cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo1.png").resize((70,70)))
 cubo = Radiobutton(frameCubo, image=cuboFoto, variable=formas, value=4, command=Formas).pack()
 
 frameParalelepipedo = Frame(frameFormas)
