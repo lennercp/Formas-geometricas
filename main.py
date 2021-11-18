@@ -226,7 +226,7 @@ numerosEntry = {
     },
     'retangulo': {
         'area': ['lado1','lado2'],
-        'diagonal' : ['lado1','lado2'],
+        'diagonal' : ['area','lado1','lado2'],
         'perimetro' : ['lado1','lado2']
 
     },
@@ -242,8 +242,8 @@ numerosEntry = {
         'diagonal': ['aresta']
     }, 
     'paralelepipedo':{
-        'volume': ['altura','comprimento', 'largura'], 
-        'diagonal': ['altura','comprimento','largura']
+        'volume': ['lado1', 'lado2', 'lado3'], 
+        'diagonal': ['lado1','lado2','lado3']
     }
 }
 
