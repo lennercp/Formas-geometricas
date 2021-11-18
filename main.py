@@ -175,22 +175,16 @@ circulo = Radiobutton(frameCirculo, image=circuloFoto, variable=formas, value=3,
 #formas 3D
 frameCubo = Frame(frameFormas)
 cuboLabel = Label(frameCubo, text="     Cubo").pack()
-cuboimage = Image.open("img/cubo.png").resize((70,70))
-cuboFoto = ImageTk.PhotoImage(cuboimage)
-cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo1.png").resize((70,70)))
+cuboFoto = ImageTk.PhotoImage(Image.open("img/cubo.png").resize((80,70)))
 cubo = Radiobutton(frameCubo, image=cuboFoto, variable=formas, value=4, command=Formas).pack()
 
 frameParalelepipedo = Frame(frameFormas)
 paralelepipedoLabel = Label(frameParalelepipedo, text="      Paralelepipedo").pack()
-paralelepipedoimage = Image.open("img/paralelepipedo.png").resize((70,70))
-paralelepipedoFoto = ImageTk.PhotoImage(paralelepipedoimage)
 paralelepipedoFoto = ImageTk.PhotoImage(Image.open("img/paralelepipedo.png").resize((100,70)))
 paralelepipedo = Radiobutton(frameParalelepipedo, image=paralelepipedoFoto, variable=formas, value=6, command=Formas).pack() 
 
 frameEsfera = Frame(frameFormas)
 esferaLabel = Label(frameEsfera, text="      Esfera").pack()
-esferaimage = Image.open("img/esfera.png").resize((70,70))
-esferaFoto = ImageTk.PhotoImage(esferaimage)
 esferaFoto = ImageTk.PhotoImage(Image.open("img/esfera.png").resize((70,70)))
 esfera = Radiobutton(frameEsfera, image=esferaFoto, variable=formas, value=5, command=Formas).pack() 
 
