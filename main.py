@@ -221,13 +221,13 @@ atributosFormas = {
 numerosEntry = {
     'quadrado': {
         'perimetro': ['lado'],
-        'diagonal': ['lado'],
+        'diagonal': ['area'],
         'area': ['lado']
     },
     'retangulo': {
-        'area': ['altura','comprimento'],
-        'diagonal' : ['altura','comprimento'],
-        'perimetro' : ['altura','comprimento']
+        'area': ['lado1','lado2'],
+        'diagonal' : ['lado1','lado2'],
+        'perimetro' : ['lado1','lado2']
 
     },
     'circulo':{
