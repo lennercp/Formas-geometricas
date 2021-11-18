@@ -225,9 +225,9 @@ numerosEntry = {
         'area': ['lado']
     },
     'retangulo': {
-        'area': ['lado1','lado2'],
-        'diagonal' : ['lado1','lado2'],
-        'perimetro' : ['lado1','lado2']
+        'area': ['altura','comprimento'],
+        'diagonal' : ['altura','comprimento'],
+        'perimetro' : ['altura','comprimento']
 
     },
     'circulo':{
@@ -238,12 +238,12 @@ numerosEntry = {
         'volume': ['raio']
     },
     'cubo':{
-        'volume': ['lado'], 
-        'diagonal': ['lado']
+        'volume': ['aresta'], 
+        'diagonal': ['aresta']
     }, 
     'paralelepipedo':{
-        'volume': ['lado1', 'lado2', 'lado3'], 
-        'diagonal': ['lado1','lado2','lado3']
+        'volume': ['altura','comprimento', 'largura'], 
+        'diagonal': ['altura','comprimento','largura']
     }
 }
 
